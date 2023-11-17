@@ -12,13 +12,13 @@ const word: React.CSSProperties = {
 const titleStyle: React.CSSProperties = {
   fontFamily: FONT_FAMILY,
 	fontWeight: 'bold',
-	textAlign: 'center',
 	position: 'absolute',
-	top: 50,
-	width: '100%',
+	top: 200,
+  left: 100,
+	width: '50%',
 }
 
-export const SceneTitle : React.FC<{
+export const SceneText : React.FC<{
   start: number;
   textColor: string;
   text: string;
@@ -27,9 +27,9 @@ export const SceneTitle : React.FC<{
   const { fps } = useVideoConfig()
   return (
   <Sequence from={0}>
-      <h1 style={titleStyle}>
+      <p style={titleStyle}>
     {text.split(" ").map((t : string, i: number) => {
-				const delay = (i * 5) + (start / fps);
+				const delay = (i * 3) + (start / fps);
         const frame = useCurrentFrame()
 				const scale = spring({
 					fps: fps,
@@ -46,14 +46,14 @@ export const SceneTitle : React.FC<{
 							...word,
 							color: textColor,
 	            fontSize: textSize,
-							transform: `scale(${scale})`,
+							opacity: scale,
 						}}
 					>
 						{t}
 					</span>
 				);
 			})}
-      </h1>
+      </p>
   </Sequence>
   )
 }

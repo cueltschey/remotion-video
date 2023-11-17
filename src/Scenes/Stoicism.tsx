@@ -1,11 +1,16 @@
 import { AbsoluteFill } from "remotion"
-import SceneTitle from "./SceneTitle"
+import { SceneTitle } from "./SceneTitle"
 
 export const Stoicism : React.FC = () => {
   return (
     <AbsoluteFill style={{backgroundColor:"#343434"}}>
-      <SceneTitle start={1170} textColor="white" text="testing my scenetitle"/>
+      <SceneTitle 
+        textSize={60} 
+        start={1170} 
+        textColor='white' 
+        text='Point One, Stoicism'/>
     </AbsoluteFill>
   )
 }
+
 
