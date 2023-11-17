@@ -11,6 +11,7 @@ import { linearTiming, TransitionSeries } from "@remotion/transitions";
 import { slide } from "@remotion/transitions/slide";
 
 
+import { Stoicism } from './Scenes/Stoicism'
 import {Argument} from './Scenes/Argument'
 import {Subtitle} from './HelloWorld/Subtitle';
 import {Title} from './HelloWorld/Title';
@@ -64,10 +65,10 @@ export const Main: React.FC<z.infer<typeof myCompSchema>> = ({
 		<TransitionSeries.Sequence durationInFrames={1140} style={{backgroundColor: '#343434'}}>
 			<AbsoluteFill style={{opacity}}>
         <Sequence from={0}>
-          <Thinker style={{translate: `translate(${logoTranslation}px)`,}}/>
+          <Thinker/>
         </Sequence>
 				<Sequence from={35}>
-					<Title titleText={propOne} titleColor={propTwo} />
+					<Title titleText={propOne} titleColor={propTwo}/>
 				</Sequence>
 				<Sequence from={75}>
 					<Subtitle />
@@ -80,7 +81,15 @@ export const Main: React.FC<z.infer<typeof myCompSchema>> = ({
         />
     <TransitionSeries.Sequence durationInFrames={570} >
       <Argument/>
-          </TransitionSeries.Sequence>
+    </TransitionSeries.Sequence>
+    <TransitionSeries.Transition 
+          presentation={slide()}
+          timing={linearTiming({durationInFrames: 30})} 
+        />
+    <TransitionSeries.Sequence durationInFrames={1470}>
+      <Stoicism/>
+    </TransitionSeries.Sequence>
+
     </TransitionSeries>
       <Sequence from={0}>
       <Audio src={staticFile("intro.wav")}/>
