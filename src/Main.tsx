@@ -1,67 +1,63 @@
-import {spring, staticFile} from 'remotion';
-import {
-	AbsoluteFill,
-	interpolate,
-	Sequence,
-	useCurrentFrame,
-	useVideoConfig,
-  Audio,
-} from 'remotion';
+import {staticFile, Sequence, Audio } from 'remotion';
 import { linearTiming, TransitionSeries } from "@remotion/transitions";
 import { slide } from "@remotion/transitions/slide";
 
 
-import {Stoicism} from './Scenes/Stoicism'
-import {Argument} from './Scenes/Argument'
-import {Subtitle} from './HelloWorld/Subtitle';
-import {Title} from './HelloWorld/Title';
-import {Thinker} from './HelloWorld/Thinker'
-import {z} from 'zod';
-import {zColor} from '@remotion/zod-types';
+import { Intro } from './Scenes/Intro'
+import { Argument, Conclusion, End, Existentialism, Fitness, Stoicism } from './Scenes/Scenes'
 
-export const myCompSchema = z.object({
-	titleText: z.string(),
-	titleColor: zColor(),
-});
 
-export const Main: React.FC<z.infer<typeof myCompSchema>> = ({
-	titleText: propOne,
-	titleColor: propTwo,
-}) => {
-	const frame = useCurrentFrame();
-	const {durationInFrames, fps} = useVideoConfig();
+export const Main: React.FC = () => {
 
 
 	// A <AbsoluteFill> is just a absolutely positioned <div>!
 	return (
     <>
     <TransitionSeries>
-		<TransitionSeries.Sequence durationInFrames={1140} style={{backgroundColor: '#343434'}}>
-			<AbsoluteFill>
-        <Sequence from={0}>
-          <Thinker/>
-        </Sequence>
-				<Sequence from={35}>
-					<Title titleText={propOne} titleColor={propTwo}/>
-				</Sequence>
-				<Sequence from={75}>
-					<Subtitle />
-				</Sequence>
-			</AbsoluteFill>
+		<TransitionSeries.Sequence durationInFrames={1170} style={{backgroundColor: '#343434'}}>
+          <Intro />
 		</TransitionSeries.Sequence>
     <TransitionSeries.Transition 
           presentation={slide()}
           timing={linearTiming({durationInFrames: 30})} 
         />
-    <TransitionSeries.Sequence durationInFrames={570} >
+    <TransitionSeries.Sequence durationInFrames={600} >
       <Argument/>
     </TransitionSeries.Sequence>
     <TransitionSeries.Transition 
           presentation={slide()}
           timing={linearTiming({durationInFrames: 30})} 
         />
-    <TransitionSeries.Sequence durationInFrames={1470}>
+    <TransitionSeries.Sequence durationInFrames={1500}>
       <Stoicism/>
+    </TransitionSeries.Sequence>
+    <TransitionSeries.Transition 
+          presentation={slide()}
+          timing={linearTiming({durationInFrames: 30})} 
+        />
+    <TransitionSeries.Sequence durationInFrames={1620}>
+      <Existentialism/>
+    </TransitionSeries.Sequence>
+    <TransitionSeries.Transition 
+          presentation={slide()}
+          timing={linearTiming({durationInFrames: 30})} 
+        />
+    <TransitionSeries.Sequence durationInFrames={1440}>
+      <Fitness/>
+    </TransitionSeries.Sequence>
+    <TransitionSeries.Transition 
+          presentation={slide()}
+          timing={linearTiming({durationInFrames: 30})} 
+        />
+    <TransitionSeries.Sequence durationInFrames={1950}>
+      <Conclusion/>
+    </TransitionSeries.Sequence>
+    <TransitionSeries.Transition 
+          presentation={slide()}
+          timing={linearTiming({durationInFrames: 30})} 
+        />
+    <TransitionSeries.Sequence durationInFrames={1500}>
+      <End/>
     </TransitionSeries.Sequence>
 
     </TransitionSeries>
@@ -82,6 +78,9 @@ export const Main: React.FC<z.infer<typeof myCompSchema>> = ({
       </Sequence>
       <Sequence from={6180}>
       <Audio src={staticFile("conclusion.wav")}/>
+      </Sequence>
+      <Sequence from={8100}>
+        <Audio src={staticFile("end.wav")} />
       </Sequence>
    </> 
 	);

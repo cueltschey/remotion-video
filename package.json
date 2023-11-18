@@ -13,11 +13,13 @@
   "license": "UNLICENSED",
   "dependencies": {
     "@remotion/cli": "4.0.70",
+    "@remotion/renderer": "^4.0.71",
     "@remotion/transitions": "^4.0.71",
     "@remotion/zod-types": "4.0.70",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "remotion": "4.0.70",
+    "thorium": "^0.0.1",
     "zod": "^3.21.4"
   },
   "devDependencies": {
