@@ -1,2 +1,9 @@
 # remotion-video
-Code for a video project I used as a presentation. Helped me learn a lot about javascript
+
+### Overview
+This is a simple project to test out remotion for making videos. I used it to complete an assignment for my comp. II class
+
+### Features
+* Made with remotion
+* animations with javascript
+* original audio recordings
